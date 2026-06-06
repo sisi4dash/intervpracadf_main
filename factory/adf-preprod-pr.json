@@ -1,0 +1,15 @@
+{
+	"name": "adf-preprod-pr",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "48f0bf37-5d2e-4177-9c39-9a597c3b45b7",
+		"tenantId": "3d03ecff-5885-435e-8277-c193de3761c5"
+	}
+}
