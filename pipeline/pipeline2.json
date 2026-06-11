@@ -64,9 +64,17 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "Binary1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"foldername": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								},
-								"fieldList": [],
+								"fieldList": [
+									"childItems"
+								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"enablePartitionDiscovery": false
@@ -75,16 +83,27 @@
 									"type": "BinaryReadSettings"
 								}
 							}
+						},
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata2",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
 						}
 					]
 				}
 			}
 		],
-		"parameters": {
-			"foldername": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
