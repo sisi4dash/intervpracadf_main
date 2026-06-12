@@ -23,6 +23,10 @@
 			"type": "string",
 			"defaultValue": "0603-020700-cu3qze6z"
 		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73847c54-712c-4a6d-8dd6-598cfc62b75a/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/adlspracsisir"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -61,6 +65,9 @@
 					},
 					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+					},
+					"trigger1_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
 					}
 				}
 			},

@@ -22,6 +22,10 @@
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0603-020700-cu3qze6z"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/73847c54-712c-4a6d-8dd6-598cfc62b75a/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/adlspracsisir"
 		}
 	},
 	"variables": {
@@ -125,13 +129,13 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"field": {
-													"value": "@activity('Get Metadata1').output.childItems",
+													"value": "@item().name",
 													"type": "Expression"
 												}
 											}
 										},
 										"fieldList": [
-											"childItems"
+											"itemName"
 										],
 										"storeSettings": {
 											"type": "AzureBlobFSReadSettings",
@@ -169,7 +173,7 @@
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
 												"wildcardFolderPath": {
-													"value": "@activity('Get Metadata2').output.childItems",
+													"value": "@activity('Get Metadata2').output.itemName",
 													"type": "Expression"
 												},
 												"wildcardFileName": "*csv",
@@ -376,6 +380,36 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline2",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/input/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline2')]"
+			]
 		}
 	]
 }
