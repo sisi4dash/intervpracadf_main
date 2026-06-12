@@ -68,7 +68,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"field": {
-											"value": "@activity('Get Metadata1').output.childItems",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
