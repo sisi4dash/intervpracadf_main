@@ -65,7 +65,13 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "DelimitedText1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"field": {
+											"value": "@activity('Get Metadata1').output.childItems",
+											"type": "Expression"
+										}
+									}
 								},
 								"fieldList": [
 									"childItems"
@@ -81,8 +87,8 @@
 							}
 						},
 						{
-							"name": "Wait1",
-							"type": "Wait",
+							"name": "Copy data1",
+							"type": "Copy",
 							"dependsOn": [
 								{
 									"activity": "Get Metadata2",
@@ -91,10 +97,64 @@
 									]
 								}
 							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 1
-							}
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"wildcardFolderPath": {
+											"value": "@activity('Get Metadata2').output.childItems",
+											"type": "Expression"
+										},
+										"wildcardFileName": "*csv",
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DelimitedText2",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText2",
+									"type": "DatasetReference"
+								}
+							]
 						}
 					]
 				}
