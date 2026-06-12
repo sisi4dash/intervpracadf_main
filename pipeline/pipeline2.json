@@ -64,14 +64,8 @@
 							"userProperties": [],
 							"typeProperties": {
 								"dataset": {
-									"referenceName": "Binary1",
-									"type": "DatasetReference",
-									"parameters": {
-										"foldername": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
 								},
 								"fieldList": [
 									"childItems"
@@ -82,7 +76,7 @@
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
-									"type": "BinaryReadSettings"
+									"type": "DelimitedTextReadSettings"
 								}
 							}
 						},
