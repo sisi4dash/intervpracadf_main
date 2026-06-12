@@ -2,7 +2,7 @@
 	"name": "trigger1",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -13,10 +13,12 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/wo",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/73847c54-712c-4a6d-8dd6-598cfc62b75a/resourceGroups/VB_DEV_B8_ETL/providers/Microsoft.Storage/storageAccounts/adlspracsisir",
 			"events": [
-				"Microsoft.Storage.BlobCreated"
+				"Microsoft.Storage.BlobCreated",
+				"Microsoft.Storage.BlobDeleted"
 			]
 		}
 	}
