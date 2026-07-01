@@ -68,13 +68,13 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"field": {
-											"value": "@item()",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
 								},
 								"fieldList": [
-									"childItems"
+									"itemName"
 								],
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
@@ -112,7 +112,7 @@
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"wildcardFolderPath": {
-											"value": "@activity('Get Metadata2').output.childItems",
+											"value": "@activity('Get Metadata2').output.itemName",
 											"type": "Expression"
 										},
 										"wildcardFileName": "*csv",
