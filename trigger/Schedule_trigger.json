@@ -2,7 +2,7 @@
 	"name": "Schedule_trigger",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -26,7 +26,7 @@
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
-						55
+						57
 					],
 					"hours": [
 						22
