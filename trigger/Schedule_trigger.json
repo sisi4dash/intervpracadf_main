@@ -9,6 +9,12 @@
 					"referenceName": "Datbase_table_adls",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -20,10 +26,10 @@
 				"timeZone": "India Standard Time",
 				"schedule": {
 					"minutes": [
-						15
+						55
 					],
 					"hours": [
-						23
+						22
 					]
 				}
 			}
